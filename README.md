@@ -5,26 +5,26 @@
 
 2. Ingresa al directorio: `cd SAAC-Buzon-de-quejas-y-sugerencias `
 
-## install:
+# install:
 
-
--pip install Flask 
-
-#
-
--pip install mysql-connector-python
+1. Flask: `pip install Flask `
 
 #
+1. mysql-connector: `pip install mysql-connector-python`
 
--pip install Flask-MySQLdb
-
-#
-
--pip install MySQL
 
 #
-## run: 
+1. MySQLdb: `pip install Flask-MySQLdb `
+-
+
+#
+1. MySQL: `pip install MySQL `
+
+
+
+# run: 
 
 - index.py
 
-##
+#
+
