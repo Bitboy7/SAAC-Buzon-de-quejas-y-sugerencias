@@ -12,9 +12,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/styles.css') }}">
   <title>Home</title>
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      
+    </style>
+
 </head>
 
 <body>
+  
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -59,26 +66,27 @@
     <button type="submit" class="btn btn-outline-light"><a href="{{ url_for('login') }}">Comenzar</button></a>
   </div>
   <!-- Modal de Registro -->
-  <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+  <div class="modal" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="registroModalLabel">Crear cuenta</h3>
+        <div class="modal-header justify-content-center">
+          <h3 class="h3 modal-title">Registro </h3> 
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="POST" action="{{ url_for('registro') }}">
+           <span>Crea una cuenta ahora</span>
             <div class="mb-3">
-              <label for="matricula" class="form-label">Matricula</label>
-              <input type="text" class="form-control" id="matricula" name="matricula">
+              <label for="matricula" class="form-label">Matricula.</label>
+              <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Ingresa tu matricula:">
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="email" name="email">
+              <label for="email" class="form-label">Correo Electrónico.</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email:">
             </div>
             <div class="mb-3">
-              <label for="contrasena" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="contrasena" name="contrasena">
+              <label for="contrasena" class="form-label">Contraseña.</label>
+              <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingresa una contraseña:">
             </div>
             <button type="submit" class="submit-button btn-primary">Registrarse</button>
           </form>
