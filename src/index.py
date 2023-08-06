@@ -102,13 +102,12 @@ def guardar_queja_sugerencia():
         "%Y-%m-%dT%H:%M")  # Obtener fecha y hora actual
     cursor = conexion.connection.cursor()
     try:
-        with db.conexion.cursor() as cursor:
+        with conexion.connection.cursor() as cursor:
             cursor.execute('INSERT INTO Queja (Id_Usuario, Tipo, mensaje, sugerencia, FechaRegistro ) VALUES (%s, %s, %s, %s, %s)', (idUsuario, tipo, mensaje, sugerencia, current_date))
-            db.conexion.commit()
+            conexion.connection.commit()
     finally:
-        db.conexion.close()
+        conexion.connection.close()
     return redirect(url_for('Buzon', current_date=current_date))
-
 
 @app.route('/user', methods=['GET'])
 def user():
