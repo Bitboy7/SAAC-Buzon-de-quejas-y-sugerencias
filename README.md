@@ -8,22 +8,16 @@
 # install:
 
 1. Flask: `pip install Flask `
-
 #
 1. mysql-connector: `pip install mysql-connector-python`
-
-
 #
 1. MySQLdb: `pip install Flask-MySQLdb `
--
-
 #
 1. MySQL: `pip install MySQL `
-
-
 
 # run: 
 
 - index.py
 
 #
+
