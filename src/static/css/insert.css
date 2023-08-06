@@ -1,0 +1,24 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-size: 16;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: rgb(34, 33, 33)
+}
+
+h1 {
+    color: rgb(34, 33, 33)
+}
+
+.card-body {
+    font-weight: bold;
+    background-color: #efefef;
+    color: rgb(34, 33, 33);
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+

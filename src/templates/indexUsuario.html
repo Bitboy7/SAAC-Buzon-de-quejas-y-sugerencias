@@ -1,0 +1,205 @@
+{% extends './home.html' %}
+
+{% block title %} Usuarios {% endblock %}
+
+{% block body %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/insert.css') }}">
+</head>
+
+<div class="container-fluid">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="text-center mt-1 mb-1"> USUARIOS </h1>
+      <form action="/insertUsuario" method="post">
+        <div class="row mb-6">
+          <h3>
+            <p class="p-1 parrafo text-center">Ingrese datos.</p>
+          </h3>
+          <div class="col">
+            <label>Id de Usuario: </label>
+            <input type="text" class="form-control mb-3" name="usuarioid"></input>
+          </div>
+          <div class="col">
+            <label>Correo Usuario:</label>
+            <input type="text" class="form-control mb-3" name="usuariocorreo"></input>
+          </div>
+          <div class="col">
+            <label>Contraseña Usuario:</label>
+            <input type="text" class="form-control mb-3" name="usuariocontra"></input>
+            <div class="col">
+              <button class="btn btn-primary btn-lg mb-3 mt-3" type="submit">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!--Empieza la tabla de Usuarios-->
+      <table class="table table-bordereds">
+        <h3>
+          <p class="p-1 fst-italic text-center">Datos de los usuarios.</p>
+        </h3>
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Correo del Usuario</th>
+          <th scope="col">Contraseña del Usuario</th>
+
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </thead>
+
+        <tbody>
+          <!--Declaramos el bucle de USUARIOS-->
+          {% for d in data_user %}
+          <tr>
+            <td>{{d.idUsuario}}</td>
+            <td>{{d.Correo}}</td>
+            <td>{{d.Contrasena}}</td>
+            <td>
+              <button= class="btn btn-primary btn-sm" id="btn-edit{{d.idUsuario}}" data-bs-toggle="modal"
+                data-bs-target="#modal{{d.idUsuario}}">Editar</button>
+            <td><a href="{{url_for('eliminaUsuario', id=d.idUsuario )}}" , class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+            </td>
+
+          </tr>
+
+          <!--MODAL de usuario -->
+          <div class="modal fade" id="modal{{d.idUsuario}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.Correo}}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/actualizaUsuario/{{d.idUsuario}}" method="post">
+                    <label>Correo:</label>
+                    <input type="text" class="form-control mb-3" name="usuariocorreo" value="{{d.Correo}}">
+
+                    <label>Contraseña:</label>
+                    <input type="text" class="form-control mb-3" name="usuariocontra" value="{{d.Contrasena}}">
+
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Modal de Registro -->
+  <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="registroModalLabel">Crear cuenta</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{{ url_for('registro') }}">
+            <div class="mb-3">
+              <label for="matricula" class="form-label">Matricula</label>
+              <input type="text" class="form-control" id="matricula" name="matricula">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="contrasena" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" name="contrasena">
+            </div>
+            <button type="submit" class="submit-button btn-primary">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="container-fluid">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="text-center mt-1 mb-1"> Quejas </h1>
+      <!--Empieza la tabla de quejas-->
+      <table class="table table-bordereds">
+        <h3>
+          <p class="p-1 text-center">Regustro de quejas.</p>
+        </h3>
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha de registro</th>
+            <th scope="col">Mensaje</th>
+            <th scope="col">Sugerencia</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Fecha fin</th>
+
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </thead>
+
+        <tbody>
+            <!--Declaramos el bucle-->
+            {% for d in data_queja %}
+                <tr>
+                    <td>{{d.idQueja}}</td>
+                    <td>{{d.Tipo}}</td>
+                    <td>{{d.FechaRegistro}}</td>
+                    <td>{{d.mensaje}}</td>
+                    <td>{{d.sugerencia}}</td>
+                    <td>{{d.Estatus}}</td>
+                    <td>{{d.FechaFin}}</td>
+                    <td><button= class="btn btn-primary btn-sm"id="btn-edit{{d.idQueja}}" data-bs-toggle="modal" data-bs-target="#modal{{d.idQueja}}">Editar</button></td>
+                    <td><a href="{{url_for('deleteQueja', id=d.idQueja )}}", class="btn btn-danger btn-sm">Eliminar</a></td>
+                </tr>
+
+                <!--MODAL de QUEJA -->
+            <div class="modal fade" id="modal{{d.idQueja}}" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.Estatus}}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                          <form action="/actualizaQueja/{{d.idQueja}}" method="post">
+                            <div class="mb-3 form-group-sm">
+                              <label for="tipo" class="form-label">Estatus de queja</label>
+                              <select class="form-select" id="quejaestatus" name="quejaestatus">
+                                <option value="Pendiente">En espera</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Finalizada">Finalizada</option>
+                              </select>
+                            </div>
+                      
+                            <input type="hidden" class="form-control" id="fecha_hora" name="fecha_hora" value="{{ current_date }}">
+                            
+                        </div>
+                        <div class="modal-footer">                                            
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

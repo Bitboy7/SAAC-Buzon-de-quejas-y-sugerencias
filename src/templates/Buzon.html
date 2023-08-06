@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-<hash>" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Font+Name" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/buzon.css') }}">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <title>Account</title>
+
+</head>
+<header>
+  <!--Navegacion-->
+  <div class="align-items-end justify-content-end">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid ">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='img/SAACLogo.png') }}" height="30px" width="90px" alt="Logo">
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('Buzon') }}">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Mi cuenta
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ url_for('Estatus') }}">Mi perfil </a></li>
+                <li><a class="dropdown-item" href="#">Configuración</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item animate__pulse" href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+              </ul>
+            </li>
+          </ul>
+          <span>Bienvenido/a User-ID-{{session['idUsuario']}}</span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!--CUERPO-->
+
+<body>
+  <!--FORMULARIO.-->
+  <div class="container mt-3">
+
+    <h2 class="icono-texto">
+      Buzón 
+      <i class="bi bi-envelope-paper-fill icono-texto"> </i>
+    </h2>
+
+    <form class="formu" method="POST" action="{{ url_for('guardar_queja_sugerencia') }}">
+      <div class="mb-3 form-group-sm">
+
+        <label for="tipo" class="form-label">Tipo de Queja</label>
+        <select class="form-select" id="tipo" name="tipo" required>
+          <option value="administrativo">administrativa</option>
+          <option value="docente">docente</option>
+          <option value="alumnado">alumnado</option>
+          <option value="mobiliario">mobiliario</option>
+          <option value="general">general</option>
+        </select>
+      </div>
+
+      <input type="hidden" class="form-control" id="fecha_hora" name="fecha_hora" value="{{ current_date }}">
+
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="foto" class="form-label">Evidencia (Video, audio o imagen)</label>
+        <input class="form-control" type="file" id="foto" />
+      </div>
+      <div class="mb-3">
+        <label for="sugerencia" class="form-label">Sugerencia</label>
+        <textarea class="form-control" id="sugerencia" name="sugerencia" placeholder="Escribe aquí tu sugerencia"></textarea>
+      </div>
+      <button class="btn btn-success fa-bold animated-button animate__pulse" type="submit" name="action">
+        <span> ENVIAR <i class="fas fa-paper-plane"></i> </span> 
+      </button>
+    </form>
+  </div>
+
+  <!--Footer-->
+  <footer class="text-white text-center">
+    <div class="container p-4 pb-0">
+      <!-- Section: Form -->
+    </div>
+    <br />
+    <div class="container-fluid">
+      <hr class="border border-light border-3 opacity-100" />
+    </div>
+    <!-- Grid container -->
+    <div class="container-sm text-center">
+      <h4>Síguenos en las redes sociales</h4>
+      <ul class="list-inline text-center">
+        <li class="list-inline-item text-center">
+          <a href="#"><i class="fab fa-facebook-f footer-icon"></i></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#"><i class="fab fa-twitter footer-icon"></i></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#"><i class="fab fa-instagram footer-icon"></i></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#"><i class="fab fa-linkedin-in footer-icon"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="container p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Universidd Tecnologia de Acapulco</h5>
+
+          <a href="https://goo.gl/maps/d3nwcMZWczCbgRtK6?coh=178572&entry=tt" class="link-light">
+            Dirección: Av. Comandante Bouganville L5 Fracc. Lomas de Costa
+            Azul C.P. 39830, Acapulco de Juarez, GRO
+            <br />
+          </a>
+          <p>Contacto: Correo electrónico: universidad@utacapulco.edu.mx</p>
+        </div>
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12">
+          <h5 class="text-uppercase">Telefonos</h5>
+          <ul>
+            <li>
+              <p>Rectoría: 7446886416</p>
+            </li>
+            <li>
+              <p>Servicios Escolares: 7446886415</p>
+            </li>
+            <li>
+              <p>Administración y Finanzas: 7446886413</p>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2023 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">Codix.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

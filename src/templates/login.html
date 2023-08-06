@@ -1,0 +1,58 @@
+{% extends './home.html' %}
+
+{% block title %} login {% endblock %}
+{% block body %}
+<style>
+  body {
+      background-image: url(../static/img/students.jpg);
+  }
+</style>
+
+<div class="container-xl col-md-8">
+  <form method="POST" action="{{ url_for('login') }}">
+   <h2 class="h2">LOGIN <i class="fas fa-sign-in-alt"> </i></h2>
+    <!-- Aquí está el icono de login de Font Awesome -->
+    {% if message %}
+        <p class="alert alert-danger" role="alert">{{ message }}</p>
+    {% endif %}
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo Electrónico</label>
+      <input type="email" class="form-control" id="email" name="email" required placeholder="Ingresa tu e-mail">
+    </div>
+    <div class="mb-3">
+      <label for="contrasena" class="form-label" >Contraseña</label>
+      <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="ingresa tu contraseña">
+    </div>
+    <button type="submit" class="submit-button" href="{{ url_for('Buzon') }}">Iniciar Sesión</button>
+  </form>
+</div>
+
+<!-- Modal de Registro -->
+<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="registroModalLabel">Crear cuenta</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ url_for('registro') }}">
+          <div class="mb-3">
+            <label for="matricula" class="form-label">Matricula</label>
+            <input type="text" class="form-control" id="matricula" name="matricula">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena">
+          </div>
+          <button type="submit" class="submit-button btn-primary">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../Downloads/glider-js/glider-js-codigo_base"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "BuzUta Landing"
+	}
+}
