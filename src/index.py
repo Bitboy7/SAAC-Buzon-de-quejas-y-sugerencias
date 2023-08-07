@@ -63,6 +63,10 @@ def Buzon():
 def perfil():
    return render_template('perfil.html')
 
+@app.route('/contrasena')
+def contrasena():
+   return render_template('settings.html')
+
 # Ruta para cerrar sesión
 @app.route('/logout')
 def logout():
@@ -235,6 +239,21 @@ def Estatus():
         insertObject.append(dict(zip(columnNames, record)))
     cursor.close()
     return render_template('perfil.html', data_estatus=quejas)
+
+@app.route('/cambiarContrasena',  methods=['GET','POST'])
+def cambiarContrasena():
+    if 'idUsuario' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        new_password = request.form['Nuevacontra']
+
+        cursor = conexion.connection.cursor()
+        query = "UPDATE Usuario SET Contrasena = %s WHERE idUsuario = %s"
+        cursor.execute(query, (new_password, session['idUsuario']))
+        conexion.connection.commit()
+
+    return redirect(url_for('contrasena', message="Contraseña cambiada."))
     
 
 # Definimos el __name__ como plantilla principal a index.html y el puerto de ejecución

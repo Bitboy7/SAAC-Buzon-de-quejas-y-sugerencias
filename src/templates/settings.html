@@ -1,0 +1,46 @@
+{% extends './basebuzon.html' %}
+{% block title %} Settings {% endblock %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/perfil.css') }}">
+  </head>
+
+
+<body>
+
+  {% if message %}
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+  
+        <div class="container-fluid updatepass">
+            <div class="card shadow">
+              <div class="card-body">
+                <h1 class="text-center mt-1 mb-1"> Cambiar contraseña </h1>
+                <form action="/cambiarContrasena" method="post">
+                  <div class="row mb-6">
+                    <h3>
+                      <p class="p-1 parrafo text-center">Ingrese datos.</p>
+                    </h3>
+                    <div class="col">
+                      <label>Ingresa tu correo:</label>
+                      <input type="text" class="form-control mb-3" name="correo"></input>
+                    </div>
+                    <div class="col">
+                      <label>Ingresa nueva contraseña:</label>
+                      <input type="text" class="form-control mb-3" name="Nuevacontra"></input>
+                      <div class="col">
+                        <button class="btn btn-primary btn-lg mb-3 mt-3" type="submit">Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+             </div>
+         </div>  
+</body>
+{% endblock %}
