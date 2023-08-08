@@ -23,7 +23,7 @@ app.config['MYSQL_PASSWORD'] = '12345'
 app.config['MYSQL_DB'] = 'Buzon'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 conexion = MySQL(app)
-
+  
 # Rutas de la aplicación
 @app.route('/')
 def home():
