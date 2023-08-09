@@ -14,11 +14,11 @@ h1 {
 
 .card-body {
     font-weight: bold;
-    background-color: #21D4FD;
-    background-image: linear-gradient(19deg, #4447cc 0%, #d8f2fc 100%);
-    color: #fffefe;
+    background-color: #e6eaed;
+    background-image: linear-gradient(19deg, #c9dafc 0%, #7a97f5 100%);
+    color: #bce4f4 100%;
     color: rgb(34, 33, 33);
-    border-radius: 20px;
+    border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 14px;
 }

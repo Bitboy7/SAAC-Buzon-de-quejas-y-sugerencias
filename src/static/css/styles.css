@@ -90,7 +90,7 @@ nav {
 .modal-content {
   background-size: cover;
   background-color: #21D4FD;
-  background-image: linear-gradient(19deg, #0508dc 0%, #d8f2fc 100%);
+  background-image: linear-gradient(19deg, #3c3fea 0%, #a4def4 100%);
   color: #fffefe;
   background-repeat: no-repeat;
   border-radius: 25px;
@@ -174,7 +174,7 @@ table {
 th,
 td {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff00;
 }
 
 thead th {
