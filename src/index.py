@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, Response, session
 import os
+import time
 from flask_mysqldb import MySQL, MySQLdb
 import conexion as db
 from werkzeug.security import check_password_hash
@@ -19,7 +20,7 @@ app = Flask(__name__, template_folder=template_dir)
 #config
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
+app.config['MYSQL_PASSWORD'] = '54321'
 app.config['MYSQL_DB'] = 'Buzon'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 conexion = MySQL(app)
@@ -54,6 +55,12 @@ def login():
     # Si es una solicitud GET, mostrar el formulario de inicio de sesion
     return render_template('login.html')
 
+@app.route('/cargar')
+def cargar():
+    show_spinner = True  # Mostrar el spinner antes de realizar la tarea
+    time.sleep(3)  # Simulación de tarea que lleva tiempo
+    show_spinner = False  # Ocultar el spinner después de completar la tarea
+    return render_template('basebuzon.html', show_spinner=show_spinner)
 
 @app.route('/Buzon')
 def Buzon():
@@ -107,7 +114,7 @@ def guardar_queja_sugerencia():
     cursor = conexion.connection.cursor()
     try:
         with conexion.connection.cursor() as cursor:
-            cursor.execute('INSERT INTO Queja (Id_Usuario, Tipo, mensaje, sugerencia, FechaRegistro ) VALUES (%s, %s, %s, %s, %s)', (idUsuario, tipo, mensaje, sugerencia, current_date))
+            cursor.execute('INSERT INTO Queja (Id_Usuario, Tipo, FechaRegistro, Mensaje, Sugerencia) VALUES (%s, %s, %s, %s, %s)', (idUsuario, tipo, current_date, mensaje, sugerencia))
             conexion.connection.commit()
     finally:
         conexion.connection.close()

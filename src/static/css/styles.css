@@ -163,15 +163,28 @@ li {
 .table-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+}
+thead {
+  background-color: #8BC6EC;
+   background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
 }
 
-th,
+th {
+  font-weight: bold;
+  padding: 10px;
+}
+
+
 td {
   padding: 8px;
   border: 1px solid #ccc;
