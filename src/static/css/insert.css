@@ -1,9 +1,6 @@
 body {
   display: flex;
   flex-direction: column;
-  background-color: #8bc6ec;
-  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
-
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(34, 33, 33);
@@ -15,11 +12,7 @@ h1 {
 
 .card-body {
   font-weight: bold;
-  background-color: #8bc6ec;
-  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
-
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #dee6eb;
   color: rgb(253, 253, 253);
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

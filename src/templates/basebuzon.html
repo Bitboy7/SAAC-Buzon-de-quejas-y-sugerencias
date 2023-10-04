@@ -15,18 +15,6 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
-    <!-- Script para mostrar/ocultar el spinner -->
-    <script>
-      function showSpinner() {
-          document.getElementById("spinner").style.display = "block";
-          document.getElementById("content").style.display = "none";
-      }
-
-      function hideSpinner() {
-          document.getElementById("spinner").style.display = "none";
-          document.getElementById("content").style.display = "block";
-      }
-  </script>
   <title>Account</title>
 
 </head>
@@ -34,7 +22,7 @@
   <!--Navegacion-->
   <div class="align-items-end justify-content-end">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container-fluid ">
+      <div class="container-xl ">
         <div class="logo">
           <img src="{{ url_for('static', filename='img/SAACLogo.png') }}" height="30px" width="90px" alt="Logo">
         </div>
@@ -77,13 +65,6 @@
 {% endif %}
 
 {% endblock %}
-  
-   <!-- Spinner -->
-   <div class="spinner" id="spinner">
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    <p>Cargando...</p>
-</div>
-   
   <!--Footer-->
   <footer class="text-white text-center">
     <div class="container p-4 pb-0">

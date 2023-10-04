@@ -6,163 +6,183 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/contacto.css') }}">
-  </head>
-
-  <header>
-     <!-- Modal de Registro -->
-   <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="registroModalLabel">Crear cuenta</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="{{ url_for('registro') }}">
-            <div class="mb-3">
-              <label for="matricula" class="form-label">Matricula</label>
-              <input type="text" class="form-control" id="matricula" name="matricula">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-3">
-              <label for="contrasena" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="contrasena" name="contrasena">
-            </div>
-            <button type="submit" class="submit-button btn-primary">Registrarse</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </header>
-
+</head>
 
 <body>
-<div id="page">
+	<div id="page">
 		<!-- #masthead -->
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
 				<main id="main" class="site-main">
-				<div class="grid portfoliogrid">
-				
-					<div style="text-align: center" > <h1  style="color:white"> Colaboradores </h1>
-						<!-- #img codix -->
-	                <div class="container-fluid">
-		            <img src="../static/img/codix-logo.jpeg" class="img-fluid rounded mx-auto d-block" height="250" width="250" alt="...">
-	                </div>
-					</div>
-					
-					<style>
-						body {
-							/* Establece la imagen de fondo */
-							background-image: url('https://i.pinimg.com/736x/3d/af/36/3daf36bd8482a836dca218b91b93f4b8.jpg');
-							/* Ajusta el tamaño de la imagen de fondo (opcional) */
-							background-size: cover;
-							/* Fija la imagen de fondo para que no se desplace con el contenido (opcional) */
-							background-attachment: fixed;
-						}
-					</style>
-					
-					<div class="container mt-5">
-						<div class="row">
-							<div class="col-md-15">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Salinas de la Cruz Gerardo</a></h2>
-					<h2></h2>
-					<p><h2 class="site-description" style="color:white">Correo:salinasdelacruz.gerardo@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-256-4790</h2></p>
-					</header>
-					</article>
-					</div>
-            		</div>
-					
+					<div class="grid portfoliogrid">
 
-					<div class="container mt-4">
-						<div class="row">
-							<div class="col-md-15">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Ramirez Vazquez Angeles Natividad</a></h2>
-					
-					<p><h2 class="site-description" style="color:white">Correo: ramirezvazquez.angelesnatividad@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-256-5461</h2></p>
-					</header>
-					</article>
-					</div>
-					</div>
-					
+						<div style="text-align: center">
+							<h1 style="color:white"> Colaboradores </h1>
+							<!-- #img codix -->
+							<div class="container-fluid">
+								<img src="../static/img/codix-logo.jpeg" class="img-fluid rounded mx-auto d-block"
+									height="250" width="250" alt="...">
+							</div>
+						</div>
 
-					<div class="container mt-5">
-						<div class="row">
-							<div class="col-md-15">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Pérez Real David</a></h2>
-					
-					<p><h2 class="site-description" style="color:white">Correo: perezreal.david@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-212-4789</h2></p>
-					</header>
-					</article>
-					</div>
-					</div>
-					
-					
-					<div class="container mt-5" >
-						<div class="row">
-							<div class="col-md-20">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Corrales Figueroa Luis Eugenio</a></h2>
-					<h2></h2>
-					<p><h2 class="site-description" style="color:white">Correo: corralesfigueroa.luiseugenio@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-456-7512</h2></p>
-					</header>
-					</article>
-					</div>
-					</div>
-					
-					
-					<div class="container mt-5">
-						<div class="row">
-							<div class="col-md-20">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Ramirez Hernandez Iker Isidro</a></h2>
-					
-					<p><h2 class="site-description" style="color:white">Correo: ramirezhernandez.ikerisidro@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-452-7426</h2></p>
-					</header>
-					</article>
-					</div>
-					</div>
-					
+						<style>
+							body {
+								/* Establece la imagen de fondo */
+								background-image: url('https://i.pinimg.com/736x/3d/af/36/3daf36bd8482a836dca218b91b93f4b8.jpg');
+								/* Ajusta el tamaño de la imagen de fondo (opcional) */
+								background-size: cover;
+								/* Fija la imagen de fondo para que no se desplace con el contenido (opcional) */
+								background-attachment: fixed;
+							}
+						</style>
 
-					<div class="container mt-5">
-						<div class="row">
-							<div class="col-md-20">
-								<div class="cell card-body bg-dark">
-					<article class="hentry">
-					<article class="hentry">
-					<header class="entry-header">
-					<h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Arias Carbajal Antonio</a></h2>
-					<h2></h2>
-					<p><h2 class="site-description" style="color:white">Correo: ariascarbajal.antonio@utacapulco.edu.mx</h2>
-						<h2 class="site-description" style="color:white">Teléfono: 744-725-4572</h2></p>
-					</header>
-					</article>
-					</div>
-					</div>
-					
-				</div>
-				
+						<div class="container mt-5">
+							<div class="row">
+								<div class="col-md-15">
+									<div class="cell card-body bg-dark">
+										<article class="hentry">
+											<header class="entry-header">
+												<h2 class="entry-title"><a href="portfolio-item.html"
+														rel="bookmark">Salinas de la Cruz Gerardo</a></h2>
+												<h2></h2>
+												<p>
+												<h2 class="site-description" style="color:white">
+													Correo:salinasdelacruz.gerardo@utacapulco.edu.mx</h2>
+												<h2 class="site-description" style="color:white">Teléfono: 744-256-4790
+												</h2>
+												</p>
+											</header>
+										</article>
+									</div>
+								</div>
+
+
+								<div class="container mt-4">
+									<div class="row">
+										<div class="col-md-15">
+											<div class="cell card-body bg-dark">
+												<article class="hentry">
+													<header class="entry-header">
+														<h2 class="entry-title"><a href="portfolio-item.html"
+																rel="bookmark">Ramirez Vazquez Angeles Natividad</a>
+														</h2>
+
+														<p>
+														<h2 class="site-description" style="color:white">Correo:
+															ramirezvazquez.angelesnatividad@utacapulco.edu.mx</h2>
+														<h2 class="site-description" style="color:white">Teléfono:
+															744-256-5461</h2>
+														</p>
+													</header>
+												</article>
+											</div>
+										</div>
+
+
+										<div class="container mt-5">
+											<div class="row">
+												<div class="col-md-15">
+													<div class="cell card-body bg-dark">
+														<article class="hentry">
+															<header class="entry-header">
+																<h2 class="entry-title"><a href="portfolio-item.html"
+																		rel="bookmark">Pérez Real David</a></h2>
+
+																<p>
+																<h2 class="site-description" style="color:white">Correo:
+																	perezreal.david@utacapulco.edu.mx</h2>
+																<h2 class="site-description" style="color:white">
+																	Teléfono: 744-212-4789</h2>
+																</p>
+															</header>
+														</article>
+													</div>
+												</div>
+
+
+												<div class="container mt-5">
+													<div class="row">
+														<div class="col-md-20">
+															<div class="cell card-body bg-dark">
+																<article class="hentry">
+																	<header class="entry-header">
+																		<h2 class="entry-title"><a
+																				href="portfolio-item.html"
+																				rel="bookmark">Corrales Figueroa Luis
+																				Eugenio</a></h2>
+																		<h2></h2>
+																		<p>
+																		<h2 class="site-description"
+																			style="color:white">Correo:
+																			corralesfigueroa.luiseugenio@utacapulco.edu.mx
+																		</h2>
+																		<h2 class="site-description"
+																			style="color:white">Teléfono: 744-456-7512
+																		</h2>
+																		</p>
+																	</header>
+																</article>
+															</div>
+														</div>
+
+
+														<div class="container mt-5">
+															<div class="row">
+																<div class="col-md-20">
+																	<div class="cell card-body bg-dark">
+																		<article class="hentry">
+																			<header class="entry-header">
+																				<h2 class="entry-title"><a
+																						href="portfolio-item.html"
+																						rel="bookmark">Ramirez Hernandez
+																						Iker Isidro</a></h2>
+
+																				<p>
+																				<h2 class="site-description"
+																					style="color:white">Correo:
+																					ramirezhernandez.ikerisidro@utacapulco.edu.mx
+																				</h2>
+																				<h2 class="site-description"
+																					style="color:white">Teléfono:
+																					744-452-7426</h2>
+																				</p>
+																			</header>
+																		</article>
+																	</div>
+																</div>
+
+
+																<div class="container mt-5">
+																	<div class="row">
+																		<div class="col-md-20">
+																			<div class="cell card-body bg-dark">
+																				<article class="hentry">
+																					<article class="hentry">
+																						<header class="entry-header">
+																							<h2 class="entry-title"><a
+																									href="portfolio-item.html"
+																									rel="bookmark">Arias
+																									Carbajal Antonio</a>
+																							</h2>
+																							<h2></h2>
+																							<p>
+																							<h2 class="site-description"
+																								style="color:white">
+																								Correo:
+																								ariascarbajal.antonio@utacapulco.edu.mx
+																							</h2>
+																							<h2 class="site-description"
+																								style="color:white">
+																								Teléfono: 744-725-4572
+																							</h2>
+																							</p>
+																						</header>
+																					</article>
+																			</div>
+																		</div>
+
+																	</div>
+
 				</main>
 				<!-- #main -->
 			</div>
@@ -170,19 +190,21 @@
 		</div>
 		<!-- #content -->
 	</div>
-	
+
 	<footer id="colophon" class="site-footer">
-	<div class="container">
-		<div class="site-info card-body bg-dark">
-			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ffffff; font-weight:300; text-align: center; margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">SAAC</h1>
-			<div class="texto">
-            <a target="blank"  href="">&copy; SAAC - El Futuro NuestroSofware - SAAC.net</a>
-            </div>
+		<div class="container">
+			<div class="site-info card-body bg-dark">
+				<h1
+					style="font-family: 'Herr Von Muellerhoff';color: #ffffff; font-weight:300; text-align: center; margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">
+					SAAC</h1>
+				<div class="texto">
+					<a target="blank" href="">&copy; SAAC - El Futuro NuestroSofware - SAAC.net</a>
+				</div>
+			</div>
 		</div>
-	</div>	
 	</footer>
 	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
-</div>
+	</div>
 
 </body>
 

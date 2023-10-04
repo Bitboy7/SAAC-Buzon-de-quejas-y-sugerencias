@@ -55,13 +55,6 @@ def login():
     # Si es una solicitud GET, mostrar el formulario de inicio de sesion
     return render_template('login.html')
 
-@app.route('/cargar')
-def cargar():
-    show_spinner = True  # Mostrar el spinner antes de realizar la tarea
-    time.sleep(3)  # Simulación de tarea que lleva tiempo
-    show_spinner = False  # Ocultar el spinner después de completar la tarea
-    return render_template('basebuzon.html', show_spinner=show_spinner)
-
 @app.route('/Buzon')
 def Buzon():
    return render_template('Buzon.html')
@@ -84,23 +77,6 @@ def logout():
 @app.route('/contacto')
 def contacto():
     return render_template('contacto.html')
-
-@app.route('/registro', methods=['POST'])
-def registro():
-    matricula = request.form["matricula"]
-    email = request.form['email']
-    contrasena = request.form['contrasena']
-
-    if email and contrasena:
-        cursor = db.conexion.cursor()
-        sql = """INSERT INTO Usuario (idUsuario,Correo, Contrasena)
-            VALUES (%s, %s, %s) """
-        # Declaramos a "datos" como una variable tipo tupla para mandar información
-        datos = (matricula, email, contrasena)
-        cursor.execute(sql, datos)
-        db.conexion.commit()
-    return redirect(url_for('Buzon'))
-
 
 @app.route('/guardar_queja_sugerencia', methods=['POST'])
 def guardar_queja_sugerencia():
@@ -144,8 +120,7 @@ def user():
     cursor2.close()
     return render_template('indexUsuario.html', data_user=insertObjeto_usuario, data_queja=insertObjeto_otraTabla)
 
-
-# Ruta para ingresar registros
+# Ruta para ingresar usuarios
 @app.route('/insertUsuario', methods=['POST'])
 def insertUsuario():
     # Importamos las variables desde el form del indexUsuario.html
@@ -161,7 +136,7 @@ def insertUsuario():
         datos = (id, correo, contra)
         cursor.execute(sql, datos)
         db.conexion.commit()
-    return redirect(url_for('user'))
+    return redirect(url_for('login'))
 
 # Ruta para modificar usuario
 @app.route('/actualizaUsuario/<string:id>', methods=['POST'])
@@ -183,8 +158,8 @@ def actualizaUsuario(id):
     return redirect(url_for('user'))
 
 # Ruta para eliminar registros
-@app.route('/eliminaUsuario/<string:id>')
-def eliminaUsuario(id):
+@app.route('/eliminaUsuario/<string:idUsuario>')
+def eliminaUsuario(idUsuario):
     resultado = MessageBox.askokcancel(
         "Eliminar...", "¿Estas seguro de eliminar el registro?")
     if resultado == TRUE:
@@ -192,7 +167,7 @@ def eliminaUsuario(id):
         sql = """DELETE FROM Usuario
                     WHERE idUsuario=%s"""
         # Declaramos a "datos" como una variable tipo tupla para mandar la información
-        datos = (id,)
+        datos = (idUsuario,)
         cursor.execute(sql, datos)
         db.conexion.commit()
     return redirect(url_for('user'))
