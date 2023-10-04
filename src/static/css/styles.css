@@ -11,11 +11,8 @@
 body {
   padding-top: 100px;
   /* Altura de la barra de navegación */
-  background: #1488cc;
+  background: #008ecf;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2b32b2, #1488cc);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2b32b2, #1488cc);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,15 +20,17 @@ body {
 
 h1 {
   font-size: 35px;
-  color: #fffefe;
+  color: #feffff;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-h2 {
+h2{
+  font-size: 35px;
+  color: #fafafa;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 2px;
 }
 
@@ -170,20 +169,17 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-  background-color: #8BC6EC;
-  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+  background-color: #ced3d6;
 }
-thead {
-  background-color: #8BC6EC;
-   background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 
+thead {
+  background-color: #dbe2e7;;
 }
 
 th {
   font-weight: bold;
   padding: 10px;
 }
-
 
 td {
   padding: 8px;
@@ -197,3 +193,55 @@ thead th {
 tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+

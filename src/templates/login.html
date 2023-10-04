@@ -2,64 +2,78 @@
 
 {% block title %} login {% endblock %}
 {% block body %}
-<style>
-  body {
-      background-image: url(../static/img/students.jpg);
-  }
-  form{
-    background-color: #21D4FD;
-   background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
-  }
-</style>
 
-<div class="container-xl col-md-8">
-  <form method="POST" action="{{ url_for('login') }}">
-   <h2 class="h2">LOGIN <i class="fas fa-sign-in-alt"> </i></h2>
-    <!-- Aquí está el icono de login de Font Awesome -->
-    {% if message %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    <div class="mb-3">
-      <label for="email" class="form-label">Correo Electrónico</label>
-      <input type="email" class="form-control" id="email" name="email" required placeholder="Ingresa tu e-mail">
-    </div>
-    <div class="mb-3">
-      <label for="contrasena" class="form-label" >Contraseña</label>
-      <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="ingresa tu contraseña">
-    </div>
-    <button type="submit" class="submit-button" href="{{ url_for('Buzon') }}">Iniciar Sesión</button>
-  </form>
-</div>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/login.css') }}">
+</head>
 
-<!-- Modal de Registro -->
-<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="registroModalLabel">Crear cuenta</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form method="POST" action="{{ url_for('insertUsuario') }}">
+      <h1>Crear cuenta</h1>
+      <div class="social-container">
+        <a href="#" class="social a"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social a"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social a"><i class="fab fa-linkedin-in"></i></a>
       </div>
-      <div class="modal-body">
-        <form method="POST" action="{{ url_for('registro') }}">
-          <div class="mb-3">
-            <label for="matricula" class="form-label">Matricula</label>
-            <input type="text" class="form-control" id="matricula" name="matricula">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" name="email">
-          </div>
-          <div class="mb-3">
-            <label for="contrasena" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contrasena" name="contrasena">
-          </div>
-          <button type="submit" class="submit-button btn-primary">Registrarse</button>
-        </form>
+      <span>o usa tu correo electronico para registrarte!</span>
+      <input type="text" class="form-control" id="matricula" name="usuarioid" placeholder="Ingresa tu matricula" required>
+      <input type="email" class="form-control" id="email" name="usuariocorreo" placeholder="Ingresa tu correo electronico" required>
+      <input type="password" class="form-control" id="contrasena" name="usuariocontra" placeholder="Ingresa una contraseña" required>
+      <div class="terminos-y-condiciones">
+        <input type="checkbox" id="acepto-terminos" name="acepto-terminos">
+        <label for="acepto-terminos">Acepto los <a class="a" href="terminos_y_condiciones.html" target="_blank">términos y condiciones</a></label>
+    </div>
+      <button type="submit" class="btn-primary">Registrarse</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form method="POST" action="{{ url_for('login') }}">
+      <h1 class="h1">Inicio de sesion</h1>
+      {% if message %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      <div class="social-container">
+        <a href="#" class="social a"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social a"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social a"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>o usa tu cuenta.</span>
+      <input type="email" class="form-control" id="email" name="email" required placeholder="Ingresa tu e-mail">
+      <input type="password" class="form-control" id="contrasena" name="contrasena" required
+        placeholder="ingresa tu contraseña">
+      <a class="a" href="#">Olvidaste tu contraseña?</a>
+      <button type="submit" href="{{ url_for('Buzon') }}">Iniciar Sesión</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h2>Bienvenido de nuevo!</h2>
+        <p>Para mantenerse conectado con nosotros, inicie sesión con su información personal</p>
+        <button class="ghost" id="signIn">Iniciar sesion</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h2>Hola, Amigo!</h2>
+        <p>Introduce tus datos personales y comienza con nosotros</p>
+        <button class="ghost" id="signUp">Unete ahora</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const signUpButton = document.getElementById('signUp');
+  const signInButton = document.getElementById('signIn');
+  const container = document.getElementById('container');
+
+  signUpButton.addEventListener('click', () =>
+    container.classList.add('right-panel-active'));
+
+  signInButton.addEventListener('click', () =>
+    container.classList.remove('right-panel-active'));
+</script>
 {% endblock %}
