@@ -37,9 +37,7 @@
       </div>
       {% endif %}
       <div class="social-container">
-        <a href="#" class="social a"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social a"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social a"><i class="fab fa-linkedin-in"></i></a>
+       <a href="{{ url_for('glogin') }}"><img src="{{ url_for('static', filename='img/google.png') }}" alt="Google Logo" class="google-icon" width="25px" height="25px"></a>
       </div>
       <span>o usa tu cuenta.</span>
       <input type="email" class="form-control" id="email" name="email" required placeholder="Ingresa tu e-mail">

@@ -19,15 +19,15 @@
           </h3>
           <div class="col text-dark">
             <label>Id de Usuario: </label>
-            <input type="text" class="form-control mb-3" name="usuarioid"></input>
+            <input type="text" class="form-control mb-3" name="usuarioid" required></input>
           </div>
           <div class="col text-dark">
             <label>Correo Usuario:</label>
-            <input type="text" class="form-control mb-3" name="usuariocorreo"></input>
+            <input type="text" class="form-control mb-3" name="usuariocorreo" required></input>
           </div>
           <div class="col text-dark">
             <label>Contraseña Usuario:</label>
-            <input type="text" class="form-control mb-3" name="usuariocontra"></input>
+            <input type="text" class="form-control mb-3" name="usuariocontra" required></input>
             <div class="col">
               <button class="btn btn-primary btn-lg mb-3 mt-3" type="submit">Guardar</button>
             </div>
@@ -66,8 +66,7 @@
           </tr>
 
           <!--MODAL de usuario -->
-          <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+          <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -133,7 +132,8 @@
             <td>{{d.Estatus}}</td>
             <td>{{d.FechaFin}}</td>
             <td>
-              <button= class="btn btn-primary btn-sm"id="btn-edit{{d.idQueja}}" data-bs-toggle="modal" data-bs-target="#modal{{d.idQueja}}">Editar</button>
+              <button= class="btn btn-primary btn-sm" id="btn-edit{{d.idQueja}}" data-bs-toggle="modal"
+                data-bs-target="#modal{{d.idQueja}}">Editar</button>
             </td>
             <td><a href="{{url_for('deleteQueja', id=d.idQueja )}}" , class="btn btn-danger btn-sm">Eliminar</a></td>
           </tr>
@@ -141,34 +141,35 @@
           <!--MODAL de QUEJA -->
           <div class="modal fade" id="modal{{d.idQueja}}" tabindex="-1" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.Estatus}}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                      <form action="/actualizaQueja/{{d.idQueja}}" method="post">
-                        <div class="mb-3 form-group-sm">
-                          <label for="tipo" class="form-label">Estatus de queja</label>
-                          <select class="form-select" id="quejaestatus" name="quejaestatus">
-                            <option value="Pendiente">En espera</option>
-                            <option value="En proceso">En proceso</option>
-                            <option value="Finalizada">Finalizada</option>
-                          </select>
-                        </div>
-                  
-                        <input type="hidden" class="form-control" id="fecha_hora" name="fecha_hora" value="{{ current_date }}">
-                        
-                    </div>
-                    <div class="modal-footer">                                            
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.Estatus}}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+
+                  <form action="/actualizaQueja/{{d.idQueja}}" method="post">
+                    <div class="mb-3 form-group-sm">
+                      <label for="tipo" class="form-label">Estatus de queja</label>
+                      <select class="form-select" id="quejaestatus" name="quejaestatus">
+                        <option value="Pendiente">En espera</option>
+                        <option value="En proceso">En proceso</option>
+                        <option value="Finalizada">Finalizada</option>
+                      </select>
+                    </div>
+
+                    <input type="hidden" class="form-control" id="fecha_hora" name="fecha_hora"
+                      value="{{ current_date }}">
+
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+              </div>
             </div>
-        </div>
-          
+          </div>
+
           {% endfor%}
         </tbody>
       </table>
