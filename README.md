@@ -1,23 +1,20 @@
-# SAAC Buzon de quejas y sugerencias
- Espacio virtual donde los usuarios pueden mandar quejas y sugerencias wwn una institucion.
+# SAAC Buzon de quejas y sugerencias.
+ Espacio virtual donde los usuarios pueden enviar sus comentarios y sugerencias acerca de una institucion.
+
+![S.A.A.C.](./src/screens/SAAC.png)
 
 1. Clona este repositorio: `git clone https://github.com/tu-usuario/tu-proyecto.git`
 
-2. Ingresa al directorio: `cd SAAC-Buzon-de-quejas-y-sugerencias `
+2. Ingresa al directorio: `cd SAAC-Buzon-de-quejas-y-sugerencias`
 
-# install:
+# Crea entorno virtual (Recomendado):
+ `virtualenv env`
+ `.\env\Scripts\activate`
 
-1. Flask: `pip install Flask `
-#
-1. mysql-connector: `pip install mysql-connector-python`
-#
-1. MySQLdb: `pip install Flask-MySQLdb `
-#
-1. MySQL: `pip install MySQL `
+# instalar requqerimentos:
+ `pip install -r requirements.txt`
 
-# run: 
+# Ejecuta index: 
+ `index.py`
 
-- index.py
-
-#
 

@@ -77,10 +77,11 @@ ul:hover a:hover {
   color: rgb(41, 72, 192);
   box-shadow: 0 2px 0 0 currentColor;
 }
+
 .logo img {
-  height: 30px;
   width: auto;
 }
+
 p {
   align-items: flex-end;
 }

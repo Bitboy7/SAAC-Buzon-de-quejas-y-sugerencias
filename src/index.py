@@ -40,11 +40,13 @@ conexion = MySQL(app)
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email", "openid"],
+            "https://www.googleapis.com/auth/userinfo.email", "openid"
+            ],
     redirect_uri="http://127.0.0.1:5000/callback"
 )
 
 # Ruta principal
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -87,33 +89,34 @@ def callback():
     )
 
     session["google_id"] = id_info.get("sub")
+    session["email"] = id_info.get("email")
     session["name"] = id_info.get("name")
-    # Obtener el correo electrónico del usuario (si se solicita)
-    if "email" in id_info:
-        session["email"] = id_info["email"]
+    session["family_name"] = id_info.get("family_name")
+    session["picture"] = id_info.get("picture")
+    session["locale"] = id_info.get("locale")
 
-     # Guardar la información del usuario en la base de datos MySQL
+    # Guardar la información del usuario en la base de datos MySQL
     cursor = db.conexion.cursor()
-    user_data = (session["google_id"], session["name"], session["email"])
-    insert_query = "INSERT INTO googleauth (google_id, nombre, email) VALUES (%s, %s, %s)"
-    cursor.execute(insert_query, user_data)
+    data = (session["google_id"], session["name"], session["email"], session["family_name"],
+            session["picture"], session["locale"])
+    sql = "INSERT INTO googleauth (google_id, nombre, email, apellido, foto, idioma) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(sql, data,)
     db.conexion.commit()
     cursor.close()
 
-    flash("Inicio de sesión exitoso", "success")
-    
     return redirect("/protected_area")
 
 
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
-    # Obtén el nombre del usuario desde la sesión
-    name = session.get("name", "Usuario Desconocido")
+    # Obtener info del usuario desde la sesión
+    name = session.get("name")
     email = session.get("email")
+    picture = session.get("picture")
 
     # Puedes pasar name como una variable a tu plantilla HTML
-    return render_template("protected_area.html", name=name, email=email)
+    return render_template("protected_area.html", name=name, email=email, picture=picture)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -157,6 +160,8 @@ def contrasena():
     return render_template('settings.html')
 
 # Ruta para cerrar sesión
+
+
 @app.route('/logout')
 def logout():
     # Eliminar la información de sesión del usuario
@@ -215,6 +220,8 @@ def user():
     return render_template('indexUsuario.html', data_user=insertObjeto_usuario, data_queja=insertObjeto_otraTabla)
 
 # Ruta para ingresar usuarios
+
+
 @app.route('/insertUsuario', methods=['POST'])
 def insertUsuario():
     # Importamos las variables desde el form del indexUsuario.html
@@ -233,6 +240,8 @@ def insertUsuario():
     return redirect(url_for('login'))
 
 # Ruta para modificar usuario
+
+
 @app.route('/actualizaUsuario/<string:id>', methods=['POST'])
 def actualizaUsuario(id):
     # Importamos las variables desde el form del indexUsuario.html
@@ -252,6 +261,8 @@ def actualizaUsuario(id):
     return redirect(url_for('user'))
 
 # Ruta para eliminar registros
+
+
 @app.route('/eliminaUsuario/<string:idUsuario>')
 def eliminaUsuario(idUsuario):
     resultado = MessageBox.askokcancel(
@@ -267,6 +278,8 @@ def eliminaUsuario(idUsuario):
     return redirect(url_for('user'))
 
 # Eliminar queja
+
+
 @app.route('/deleteQueja/<string:id>')
 def deleteQueja(id):
     resultado = MessageBox.askokcancel(
@@ -282,6 +295,8 @@ def deleteQueja(id):
     return redirect(url_for('user'))
 
 # Ruta para modificar queja
+
+
 @app.route('/actualizaQueja/<string:id>', methods=['POST'])
 def actualizaQueja(id):
     # Importamos las variables desde el form del indexUsuario.html
