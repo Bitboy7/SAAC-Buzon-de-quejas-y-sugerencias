@@ -4,32 +4,36 @@
 {% block body %}
 
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/login.css') }}">
 </head>
 
 <div class="container" id="container">
   <div class="form-container sign-up-container">
     <form method="POST" action="{{ url_for('insertUsuario') }}">
-      <h1>Crear cuenta</h1>
+      <h1 class="h1">Crear cuenta.</h1>
       <div class="social-container">
-        <a href="#" class="social a"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social a"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social a"><i class="fab fa-linkedin-in"></i></a>
+        <a href="{{ url_for('glogin') }}"><img src="{{ url_for('static', filename='img/google.png') }}"
+            alt="Google Logo" class="google-icon" width="25px" height="25px"></a>
       </div>
       <span>o usa tu correo electronico para registrarte!</span>
-      <input type="text" class="form-control" id="matricula" name="usuarioid" placeholder="Ingresa tu matricula" required>
-      <input type="email" class="form-control" id="email" name="usuariocorreo" placeholder="Ingresa tu correo electronico" required>
-      <input type="password" class="form-control" id="contrasena" name="usuariocontra" placeholder="Ingresa una contraseña" required>
-      <div class="terminos-y-condiciones">
+      <input type="text" class="form-control" id="matricula" name="usuarioid" placeholder="Ingresa tu matricula"
+        required>
+      <input type="email" class="form-control" id="email" name="usuariocorreo"
+        placeholder="Ingresa tu correo electronico" required>
+      <input type="password" class="form-control" id="usuariocontra" name="usuariocontra"
+        placeholder="Ingresa una contraseña" required>
+      <div class="terminos-y-condiciones m-2">
         <input type="checkbox" id="acepto-terminos" name="acepto-terminos">
-        <label for="acepto-terminos">Acepto los <a class="a" href="terminos_y_condiciones.html" target="_blank">términos y condiciones</a></label>
-    </div>
-      <button type="submit" class="btn-primary">Registrarse</button>
+        <label for="acepto-terminos">Acepto los <a class="a" href="terminos_y_condiciones.html" target="_blank">términos
+            y condiciones</a></label>
+      </div>
+      <button type="submit">Registrar</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
     <form method="POST" action="{{ url_for('login') }}">
-      <h1 class="h1">Inicio de sesion</h1>
+      <h1 class="h1">Inicio de Sesión.</h1>
       {% if message %}
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ message }}
@@ -37,12 +41,16 @@
       </div>
       {% endif %}
       <div class="social-container">
-       <a href="{{ url_for('glogin') }}"><img src="{{ url_for('static', filename='img/google.png') }}" alt="Google Logo" class="google-icon" width="25px" height="25px"></a>
+        <a href="{{ url_for('glogin') }}"><img src="{{ url_for('static', filename='img/google.png') }}"
+            alt="Google Logo" class="google-icon" width="25px" height="25px"></a>
       </div>
       <span>o usa tu cuenta.</span>
       <input type="email" class="form-control" id="email" name="email" required placeholder="Ingresa tu e-mail">
-      <input type="password" class="form-control" id="contrasena" name="contrasena" required
-        placeholder="ingresa tu contraseña">
+      <span>
+        <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+      </span>
+      <input type="Password" class="form-control" id="password" name="contrasena" placeholder="ingresa tu contraseña"
+        required>
       <a class="a" href="#">Olvidaste tu contraseña?</a>
       <button type="submit" href="{{ url_for('Buzon') }}">Iniciar Sesión</button>
     </form>
@@ -73,5 +81,20 @@
 
   signInButton.addEventListener('click', () =>
     container.classList.remove('right-panel-active'));
+
+  var state = false;
+  function toggle() {
+    if (state) {
+      document.getElementById("password").setAttribute("type", "password");
+      document.getElementById("eye").style.color = '#7a797e';
+      state = false;
+    }
+    else {
+      document.getElementById("password").setAttribute("type", "text");
+      document.getElementById("eye").style.color = '#5887ef';
+      state = true;
+    }
+  }
 </script>
+
 {% endblock %}

@@ -95,7 +95,7 @@ def callback():
      # Guardar la información del usuario en la base de datos MySQL
     cursor = db.conexion.cursor()
     user_data = (session["google_id"], session["name"], session["email"])
-    insert_query = "INSERT INTO googleauth (google_id, name, email) VALUES (%s, %s, %s)"
+    insert_query = "INSERT INTO googleauth (google_id, nombre, email) VALUES (%s, %s, %s)"
     cursor.execute(insert_query, user_data)
     db.conexion.commit()
     cursor.close()
@@ -282,8 +282,6 @@ def deleteQueja(id):
     return redirect(url_for('user'))
 
 # Ruta para modificar queja
-
-
 @app.route('/actualizaQueja/<string:id>', methods=['POST'])
 def actualizaQueja(id):
     # Importamos las variables desde el form del indexUsuario.html
