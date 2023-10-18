@@ -8,8 +8,8 @@
 2. Ingresa al directorio:  ```cd SAAC-Buzon-de-quejas-y-sugerencias ```
 
 ## Crea entorno virtual (Recomendado):
-  ```virtualenv env ```
-  ```.\env\Scripts\activate ```
+ 1. ```virtualenv env ```
+ 2.  ```.\env\Scripts\activate ```
 
 ## instalar requerimentos:
  ```pip install -r requirements.txt ```
