@@ -3,11 +3,18 @@
 {% block title %} Usuarios {% endblock %}
 
 {% block body %}
+<style>
+  body {
+    background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
 
 <div class="container-fluid">
   <div class="card shadow">
     <div class="card-body">
-      <h1 class="text-center mt-1 mb-1 text-black"> USUARIOS. </h1>
+      <h1 class="text-center mt-1 mb-1 text-black"> USUARIOS. <i class="bi bi-people"></i> </h1>
       <form action="/insertUsuario" method="POST">
         <div class="row mb-6">
           <h3>
@@ -31,7 +38,7 @@
         </div>
       </form>
 
-      <!--Empieza la tabla de Usuarios-->
+      <!--Tabla de Usuarios-->
       <table class="table table-bordereds">
         <h3>
           <p class="p-1 fst-italic text-center">Datos de los usuarios.</p>
@@ -53,11 +60,11 @@
             <td>{{d.Correo}}</td>
             <td>{{d.Contrasena}}</td>
             <td>
-              <button= class="btn btn-primary btn-sm" id="btn-edit{{d.idUsuario}}" data-bs-toggle="modal"
-                data-bs-target="#modal">Editar</button>
-                
+              <button= class="btn btn-success btn-sm" id="btn-edit{{d.idUsuario}}" data-bs-toggle="modal"
+                data-bs-target="#modal"> <i class="bi bi-pencil"></i></button>
+
             <td><a href="{{url_for('eliminaUsuario', idUsuario=d.idUsuario )}}" ,
-                class="btn btn-danger btn-sm">Eliminar</a>
+                class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> </a>
             </td>
             </td>
           </tr>
@@ -98,7 +105,7 @@
 <div class="container-fluid">
   <div class="card shadow">
     <div class="card-body">
-      <h1 class="text-center mt-1 mb-1 text-black"> Quejas. </h1>
+      <h1 class="text-center mt-1 mb-1 text-black"> Quejas. <i class="bi bi-envelope-open"></i> </h1>
       <!--Empieza la tabla de quejas-->
       <table class="table table-bordereds">
         <h3>
@@ -129,10 +136,11 @@
             <td>{{d.Estatus}}</td>
             <td>{{d.FechaFin}}</td>
             <td>
-              <button= class="btn btn-primary btn-sm" id="btn-edit{{d.idQueja}}" data-bs-toggle="modal"
-                data-bs-target="#modal{{d.idQueja}}">Editar</button>
+              <button= class="btn btn-success btn-sm" id="btn-edit{{d.idQueja}}" data-bs-toggle="modal"
+                data-bs-target="#modal{{d.idQueja}}"> <i class="bi bi-pencil-square"></i></button>
             </td>
-            <td><a href="{{url_for('deleteQueja', id=d.idQueja )}}" , class="btn btn-danger btn-sm">Eliminar</a></td>
+            <td><a href="{{url_for('deleteQueja', id=d.idQueja )}}" , class="btn btn-danger btn-sm"> <i
+                  class="bi bi-trash"></i> </a></td>
           </tr>
 
           <!--MODAL de QUEJA -->
@@ -140,7 +148,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5 text-dark"  id="exampleModalLabel">{{d.Estatus}}</h1>
+                  <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">{{d.Estatus}}</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -173,6 +181,45 @@
     </div>
   </div>
 </div>
+
+<div class="container-fluid">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="text-center mt-1 mb-1 text-black"> Usuarios Google. <i class="bi bi-google"></i></h1>
+      <!--Tabla info google auth-->
+      <table class="table table-bordereds">
+        <h3>
+          <p class="p-1 text-center">Registro de Usuarios de Google.</p>
+        </h3>
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Google ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Idioma</th>
+          <th scope="col">Fecha login</th>
+        </thead>
+
+        <tbody>
+          <!--Declaramos el bucle-->
+          {% for d in data_google %}
+          <tr>
+            <td>{{d.id}}</td>
+            <td>{{d.google_id}}</td>
+            <td>{{d.nombre}}</td>
+            <td>{{d.apellido}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.idioma}}</td>
+            <td>{{d.fecha_login}}</td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

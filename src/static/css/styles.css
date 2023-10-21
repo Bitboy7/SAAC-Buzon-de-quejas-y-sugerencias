@@ -11,11 +11,15 @@
 body {
   padding-top: 100px;
   /* Altura de la barra de navegación */
-  background: #008ecf;
+  background-image: linear-gradient(-225deg, #008ecf 0%, #1b5d83 100%);
   /* fallback for old browsers */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
   background-size: cover;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 h1 {
@@ -129,10 +133,16 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color:rgba(214, 206, 206, 0.158);
+  backdrop-filter: blur(30px);
 }
 
-thead {
-  background-color: #dbe2e7;;
+.card-body {
+  padding: 20px;
+  border-radius: 10px;
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
 
 th {
@@ -142,19 +152,11 @@ th {
 
 td {
   padding: 8px;
-  border: 1px solid #ccc;
-}
-
-thead th {
-  background-color: #f2f2f2;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
 }
 
 .modal-content {
-  background:#efeff0;
-  color: darkblue;
+  color: rgb(7, 7, 22);
+  font-weight: bold;
   padding: auto;
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }

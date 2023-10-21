@@ -40,7 +40,8 @@ conexion = MySQL(app)
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email", "openid"
+            "https://www.googleapis.com/auth/userinfo.email", 
+            "openid"
             ],
     redirect_uri="http://127.0.0.1:5000/callback"
 )
@@ -74,7 +75,7 @@ def callback():
     flow.fetch_token(authorization_response=request.url)
 
     if not session["state"] == request.args["state"]:
-        abort(500)  # State does not match!
+        abort(500) 
 
     credentials = flow.credentials
     request_session = requests.session()
@@ -88,18 +89,20 @@ def callback():
         audience=GOOGLE_CLIENT_ID
     )
 
+    #Obtener info de la sesion
     session["google_id"] = id_info.get("sub")
-    session["email"] = id_info.get("email")
     session["name"] = id_info.get("name")
     session["family_name"] = id_info.get("family_name")
+    session["email"] = id_info.get("email")
     session["picture"] = id_info.get("picture")
     session["locale"] = id_info.get("locale")
 
-    # Guardar la información del usuario en la base de datos MySQL
+    # Guardar la información del usuario en la base de datos
     cursor = db.conexion.cursor()
-    data = (session["google_id"], session["name"], session["email"], session["family_name"],
+    data = (session["google_id"], session["name"],session["family_name"], session["email"],
             session["picture"], session["locale"])
-    sql = "INSERT INTO googleauth (google_id, nombre, email, apellido, foto, idioma) VALUES (%s, %s, %s, %s, %s, %s)"
+    sql = """INSERT INTO googleauth (google_id, nombre, apellido, email, foto, idioma)
+      VALUES (%s, %s, %s, %s, %s, %s)"""
     cursor.execute(sql, data,)
     db.conexion.commit()
     cursor.close()
@@ -200,24 +203,33 @@ def user():
     cursor.execute("SELECT * FROM Usuario")
     datosDB_usuario = cursor.fetchall()
     # Convertir los datos a diccionario para la tabla Usuario
-    insertObjeto_usuario = []
+    insertusuario = []
     columnName_usuario = [column[0] for column in cursor.description]
     for registro in datosDB_usuario:
-        insertObjeto_usuario.append(dict(zip(columnName_usuario, registro)))
+        insertusuario.append(dict(zip(columnName_usuario, registro)))
 
     cursor2 = db.conexion.cursor()
     cursor2.execute("SELECT * FROM Queja")
     datosDB_otraTabla = cursor2.fetchall()
     # Convertir los datos a diccionario para la otra tabla
-    insertObjeto_otraTabla = []
+    insertqueja = []
     columnName_otraTabla = [column[0] for column in cursor2.description]
     for registro in datosDB_otraTabla:
-        insertObjeto_otraTabla.append(
+        insertqueja.append(
             dict(zip(columnName_otraTabla, registro)))
+        
+    cursorG = db.conexion.cursor()
+    cursorG.execute("SELECT * FROM googleauth")
+    datosDB_usuario = cursorG.fetchall()
+    # Convertir los datos a diccionario para la tabla Usuario
+    insertObjeto_google = []
+    columnName_google = [column[0] for column in cursorG.description]
+    for registro in datosDB_usuario:
+        insertObjeto_google.append(dict(zip(columnName_google, registro)))    
 
     cursor.close()
     cursor2.close()
-    return render_template('indexUsuario.html', data_user=insertObjeto_usuario, data_queja=insertObjeto_otraTabla)
+    return render_template('indexUsuario.html', data_user=insertusuario, data_queja=insertqueja, data_google=insertObjeto_google)
 
 # Ruta para ingresar usuarios
 
